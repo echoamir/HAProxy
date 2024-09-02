@@ -1,0 +1,17 @@
+services:
+
+  haproxy:
+    image: haproxy:lts
+    container_name: haproxy
+    hostname: haproxy
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - /etc/ssl/private/haproxy.pem:/usr/local/etc/haproxy/haproxy.pem
+    ports:
+      - 9090:9090
+    networks:
+      - app_net
+networks:
+  app_net:
+    name: app_net
+    external: true
